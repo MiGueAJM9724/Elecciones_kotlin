@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btnCandidato"
+        android:icon="@drawable/iconcandidato"
+        android:title="@string/btnicandidato"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/btnPostula"
+        android:icon="@drawable/iconpostula"
+        android:title="@string/btnipostular"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/btnVoto"
+        android:icon="@drawable/iconvoto"
+        android:title="@string/btnivoto"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/btnResultado"
+        android:icon="@drawable/iconresultado"
+        android:title="@string/btniresultado"
+        app:showAsAction="always" />
+</menu>

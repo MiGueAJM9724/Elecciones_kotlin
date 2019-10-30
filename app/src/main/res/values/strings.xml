@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">eleccion</string>
+    <string name="etncontrol">Numero de control</string>
+    <string name="etnip">Nip</string>
+    <string name="btnicandidato">Candidatos</string>
+    <string name="btnipostular">Postulate</string>
+    <string name="btnivoto">Votar</string>
+    <string name="btniresultado">Resultados</string>
+    <string name="lblpostular">Postulación</string>
+    <string name="etnombre_candidato">Ingrese su Nombre</string>
+    <string name="etdescripcion">Describete</string>
+    <string name="etpropuesta">¿Cuáles son tus propuestas?</string>
+    <string name="rdFem">Femenino</string>
+    <string name="rdMascu">Masculino</string>
+    <string name="tvtitSex">Seleccione su sexo</string>
+    <string name="lbllogin">Inicio de sesión</string>
+</resources>
