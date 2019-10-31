@@ -6,7 +6,7 @@
     <string name="btnipostular">Postulate</string>
     <string name="btnivoto">Votar</string>
     <string name="btniresultado">Resultados</string>
-    <string name="lblpostular">Postulación</string>
+    <string name="lblpostular">Registro a candidatura</string>
     <string name="etnombre_candidato">Ingrese su Nombre</string>
     <string name="etdescripcion">Describete</string>
     <string name="etpropuesta">¿Cuáles son tus propuestas?</string>

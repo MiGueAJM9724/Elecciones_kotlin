@@ -3,11 +3,20 @@ package com.example.eleccion
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.example.eleccion.Adress.IP
 import com.example.eleccion.DataBase.AdDataBase
+import com.example.eleccion.Volley.VolleySingleton
+import kotlinx.android.synthetic.main.activity_activitypostular.*
+import kotlinx.android.synthetic.main.activity_main.*
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var  scontrol: String
@@ -25,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             if(result!!.moveToFirst()){
                 scontrol = result.getString(0)
                 snip = result.getString(1)
+                txtncontrol.text = scontrol
                 Toast.makeText(this,"Bienvenido $scontrol :)",Toast.LENGTH_SHORT).show()
                 result.close()
                 admin.close()
@@ -61,5 +71,35 @@ class MainActivity : AppCompatActivity() {
                 return super.onOptionsItemSelected(item)
             }
         }
+    }
+
+    fun insertCandidato(v:View){
+        if (txtdescripcion.text.toString().isEmpty() || txtpropuesta.text.toString().isEmpty()){
+            Toast.makeText(this,"No deje campos vacios",Toast.LENGTH_SHORT).show()
+            txtdescripcion.requestFocus()
+        }else{
+            var jsonEntrada = JSONObject()
+            jsonEntrada.put("descripcion",txtdescripcion.text.toString())
+            jsonEntrada.put("propuesta",txtpropuesta.text.toString())
+            jsonEntrada.put("ncontrol",txtncontrol.text.toString())
+            sendRequest(IP.IP+"wsElecciones/insertCandidato.php",jsonEntrada)
+        }
+    }
+
+    fun sendRequest(wsURL:String,jsonEnt:JSONObject){
+        val jsonObjectRequest = JsonObjectRequest(
+            Request.Method.POST,wsURL,jsonEnt,
+            Response.Listener { response ->
+                val succ = response["success"]
+                val msg = response["message"]
+                Toast.makeText(this,"Error URL",Toast.LENGTH_SHORT).show()
+            },
+            Response.ErrorListener { error ->
+                Toast.makeText(this,"${error.message}",Toast.LENGTH_SHORT).show()
+                Log.d("ERROR","${error.message}")
+                Toast.makeText(this,"Error URL",Toast.LENGTH_SHORT).show()
+            }
+        )
+        VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
     }
 }
