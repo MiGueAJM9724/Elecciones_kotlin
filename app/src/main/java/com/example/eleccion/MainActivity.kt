@@ -15,7 +15,7 @@ import com.example.eleccion.Adress.IP
 import com.example.eleccion.DataBase.AdDataBase
 import com.example.eleccion.Volley.VolleySingleton
 import kotlinx.android.synthetic.main.activity_activitypostular.*
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.txtncontrol
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun insertCandidato(v:View){
+   /* fun insertCandidato(v:View){
         if (txtdescripcion.text.toString().isEmpty() || txtpropuesta.text.toString().isEmpty()){
             Toast.makeText(this,"No deje campos vacios",Toast.LENGTH_SHORT).show()
             txtdescripcion.requestFocus()
@@ -84,7 +84,7 @@ class MainActivity : AppCompatActivity() {
             jsonEntrada.put("ncontrol",txtncontrol.text.toString())
             sendRequest(IP.IP+"wsElecciones/insertCandidato.php",jsonEntrada)
         }
-    }
+    }*/
 
     fun sendRequest(wsURL:String,jsonEnt:JSONObject){
         val jsonObjectRequest = JsonObjectRequest(

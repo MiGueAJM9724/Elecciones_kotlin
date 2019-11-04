@@ -7,8 +7,9 @@
     tools:context=".ActivityLogin">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="322dp"
-        android:layout_height="378dp"
+        android:layout_width="325dp"
+        android:layout_height="429dp"
+        android:background="@drawable/shape"
         app:cardElevation="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +18,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/shape">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -79,7 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/etnip"
-                    android:inputType="numberPassword"/>
+                    android:inputType="numberPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -93,7 +95,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
