@@ -8,6 +8,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -20,6 +24,9 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity() {
     private lateinit var  scontrol: String
     private lateinit var snip: String
+    private lateinit var viewAdapter: CandidatoAdapter
+    private lateinit var viewManager: RecyclerView.LayoutManager
+    val candidatoList: List<candidato> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,6 +48,60 @@ class MainActivity : AppCompatActivity() {
                 startActivity(actividadlogin)
             }
         }
+        viewManager = LinearLayoutManager(this)
+        viewAdapter = CandidatoAdapter(candidatoList,this,{
+                candid:candidato -> onItemClickListener(candid)})
+        rv_candidato_list.apply{
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = viewAdapter
+            addItemDecoration(DividerItemDecoration(this@MainActivity,DividerItemDecoration.VERTICAL))
+        }
+
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0,ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT)
+        {override fun onMove(recyclerView: RecyclerView,viewHolder: RecyclerView.ViewHolder:RecyclerView.ViewHolder,
+                                                                                                                                     target: target: RecyclerView.ViewHolder):Boolean{
+            return false
+        }
+                override fun onSwiped(viewHolder: RecyclerView.ViewHolder,swipeDir: Int){
+            val position = viewHolder.adapterPosition
+            val candid = viewAdapter.getTask()
+            val  admin = AdDataBase(baseContext)
+            if(admin.Ejecuta("Delete From candidato Where id_candidato =" + candid[position].id_candidato) == 1){
+                retrieveCandidato()
+            }
+        }
+    }).attachToRecyclerView(rv_candidato_list)
+}
+    private fun onItemClickListener(candid:candidato){
+        Toast.makeText(this,"Clicked item" + candid.nombre_alumno,Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResume(){
+        super.onResume()
+        retrieveCandidato()
+    }
+
+    private fun retrieveCandidato(){
+        val  candidatoX = getCandidatos()
+        viewAdapter.setTask(candidatoX!!)
+
+    }
+
+    fun  getCandidatos():MutableList<candidato>{
+        var candidato:MutableList<candidato> = ArrayList()
+        val admin = AdDataBase(this)
+
+        val tupla = admin.consulta("Select id_candidato, descripcion, propuesta From candidato Order By id_candidato")
+        while (tupla!!.moveToNext()){
+            val no = tupla.getInt(0)
+            val nombre_carrera = tupla.getString(1)
+            candidato.add(candidato(no,nombre_carrera))
+        }
+        tupla.close()
+        admin.close()
+        return candidato
     }
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu,menu)
