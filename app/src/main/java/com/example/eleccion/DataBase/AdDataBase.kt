@@ -19,18 +19,10 @@ class AdDataBase (context: Context): SQLiteOpenHelper(context,
                     "nip Text)"
         )
         db?.execSQL(
-            "Create Table carrera(" +
-                    "id_carrera Integer Primary Key," +
-                    "nombre_carrera Text)"
-        )
-        db?.execSQL(
             "Create Table candidato(" +
                     "id_candidato Integer Primary Key," +
-                    "nombre_candidato Text," +
-                    "sexo Text," +
                     "descripcion Text," +
                     "propuesta Text," +
-                    "id_carrera Integer," +
                     "ncontrol Text)"
         )
         db?.execSQL(

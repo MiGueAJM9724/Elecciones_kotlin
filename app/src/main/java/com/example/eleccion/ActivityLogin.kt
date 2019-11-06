@@ -25,10 +25,10 @@ class ActivityLogin : AppCompatActivity() {
                 Toast.makeText(this,"Complete sus credenciales",Toast.LENGTH_SHORT).show()
                 txtncontrol.requestFocus()
             }else{
-                var jsonEntrada = JSONObject()
+                /*var jsonEntrada = JSONObject()
                 jsonEntrada.put("ncontrol",txtncontrol.text.toString())
                 jsonEntrada.put("nip",txtNip.text.toString())
-                getUsuarioById(jsonEntrada)
+                getUsuarioById(jsonEntrada)*/
                 val ncontrol = txtncontrol.text.toString()
                 val nip = txtNip.text.toString()
                 val sentencia = "Insert into usuario(ncontrol, nip) Values('$ncontrol','$nip')"
@@ -63,9 +63,7 @@ class ActivityLogin : AppCompatActivity() {
              }*/
          }
      }
-
-
-    fun getUsuarioById(jsonEnt: JSONObject){
+    /*fun getUsuarioById(jsonEnt: JSONObject){
         val wsURL = IP.IP + "wsElecciones/getusuario.php"
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST, wsURL, jsonEnt, Response.Listener { response ->
@@ -82,5 +80,5 @@ class ActivityLogin : AppCompatActivity() {
             }
         )
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
-    }
+    }*/
 }

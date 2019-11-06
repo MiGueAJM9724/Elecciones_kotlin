@@ -14,8 +14,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.example.eleccion.Adress.IP
 import com.example.eleccion.DataBase.AdDataBase
 import com.example.eleccion.Volley.VolleySingleton
-import kotlinx.android.synthetic.main.activity_activitypostular.*
-import kotlinx.android.synthetic.main.activity_main.txtncontrol
+import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
@@ -35,7 +34,6 @@ class MainActivity : AppCompatActivity() {
                 scontrol = result.getString(0)
                 snip = result.getString(1)
                 txtncontrol.text = scontrol
-                Toast.makeText(this,"Bienvenido $scontrol :)",Toast.LENGTH_SHORT).show()
                 result.close()
                 admin.close()
             }else{
@@ -72,8 +70,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-   /* fun insertCandidato(v:View){
+   /* fun insertCandidato(v: View){
         if (txtdescripcion.text.toString().isEmpty() || txtpropuesta.text.toString().isEmpty()){
             Toast.makeText(this,"No deje campos vacios",Toast.LENGTH_SHORT).show()
             txtdescripcion.requestFocus()
@@ -84,9 +81,9 @@ class MainActivity : AppCompatActivity() {
             jsonEntrada.put("ncontrol",txtncontrol.text.toString())
             sendRequest(IP.IP+"wsElecciones/insertCandidato.php",jsonEntrada)
         }
-    }*/
+    }
 
-    fun sendRequest(wsURL:String,jsonEnt:JSONObject){
+    fun sendRequest(wsURL:String,jsonEnt: JSONObject){
         val jsonObjectRequest = JsonObjectRequest(
             Request.Method.POST,wsURL,jsonEnt,
             Response.Listener { response ->
@@ -101,5 +98,5 @@ class MainActivity : AppCompatActivity() {
             }
         )
         VolleySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest)
-    }
+    }*/
 }
